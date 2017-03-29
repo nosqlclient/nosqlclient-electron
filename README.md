@@ -6,7 +6,7 @@ Scaffold for electron packaging of [Mongoclient](https://github.com/mongoclient/
 2. Copy contents of `C:\Users\Sercan\AppData\Local\.meteor\packages\meteor-tool\1.4.3_2\mt-os.windows.x86_32\dev_bundle\server-lib\node_modules` to `app\programs\server\node_modules`
 3. Copy `Node (4.2.7)` to `bin` folder
 4. Copy `Mongod (>= 3.2.6)` to `bin` folder
-
+5. Run `npm install`
 
 ### Steps to RUN directly
 - Run: `npm install -g electron`
