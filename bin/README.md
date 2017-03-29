@@ -1,0 +1,1 @@
+## Scaffold for keeping required binaries for meteorjs.

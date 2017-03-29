@@ -1,0 +1,1 @@
+## Scaffold for bundled meteor application's directory

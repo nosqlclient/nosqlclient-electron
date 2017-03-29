@@ -1,0 +1,8 @@
+{
+  "name": "Mongoclient",
+  "main": "index.js",
+  "version": "2.0.0",
+  "dependencies": {
+    "shelljs": "^0.7.7"
+  }
+}
