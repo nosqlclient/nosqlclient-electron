@@ -120,7 +120,6 @@ const startNode = function (appRoot, mongoPort, loadingWin) {
 };
 
 const waitUntilMeteorGetsReady = function (port, loadingWin) {
-    let self = this;
     let fired = false;
 
     http.get(process.env.ROOT_URL, function () {
