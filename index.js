@@ -4,21 +4,23 @@ const net = require('net');
 const join = path.join;
 const spawn = require('child_process').spawn;
 const shell = require('shelljs');
+const http = require('http');
 
 const logTag = '[MONGOCLIENT]';
-let window = null;
 
 const createWindow = function () {
     console.log(logTag, 'trying to start Mongoclient electron application');
     const appRoot = path.resolve(__dirname);
+    const loadingPage = join('file://', appRoot, 'loading.html');
 
+    console.log(logTag, 'trying to show loading page while everything is getting ready, loading page url: ' + loadingPage);
     // show loading
     const win = new BrowserWindow({
         width: 1200,
         height: 900,
         frame: false
     });
-    win.loadURL(join(appRoot, 'loading.html'));
+    win.loadURL(loadingPage);
 
     //fix tunnel-ssh
     shell.cp('-R', join(appRoot, 'app', '/programs/server/npm/node_modules/tunnel-ssh'), join(appRoot, 'app', 'programs/server/npm/node_modules/meteor/modules-runtime/node_modules/'));
@@ -65,6 +67,10 @@ const beginStartingMongo = function (appRoot, loadingWin) {
 
         mongoProcess.stdout.on('data', function (data) {
             console.log(logTag, '[MONGOD-STDOUT]', data.toString());
+
+            if (/waiting for connections/.test(data.toString())) {
+                startNode(appRoot, port, loadingWin);
+            }
         });
 
         mongoProcess.stderr.on('data', function (data) {
@@ -74,8 +80,6 @@ const beginStartingMongo = function (appRoot, loadingWin) {
         mongoProcess.on('exit', function (code) {
             console.log(logTag, '[MONGOD-EXIT]', code.toString());
         });
-
-        startNode(appRoot, port, loadingWin);
     });
 };
 
@@ -111,7 +115,24 @@ const startNode = function (appRoot, mongoPort, loadingWin) {
             console.log(logTag, '[NODE-EXIT]', code.toString());
         });
 
-        loadWindow(port, loadingWin);
+        waitUntilMeteorGetsReady(port, loadingWin);
+    });
+};
+
+const waitUntilMeteorGetsReady = function (port, loadingWin) {
+    let self = this;
+    let fired = false;
+
+    http.get(process.env.ROOT_URL, function () {
+        if (!fired) {
+            fired = true;
+            loadWindow(port, loadingWin);
+        }
+    }).on('error', function (/* err */) {
+        if (fired) return;
+        setTimeout(function () {
+            waitUntilMeteorGetsReady(port, loadingWin);
+        }, 30);
     });
 };
 
@@ -131,7 +152,7 @@ const freeport = function (start, done) {
 };
 
 const loadWindow = function (appPort, loadingWin) {
-    window = new BrowserWindow({
+    const window = new BrowserWindow({
         devTools: true,
         webPreferences: {
             nodeIntegration: false
@@ -145,14 +166,3 @@ const loadWindow = function (appPort, loadingWin) {
 };
 
 app.on('ready', createWindow);
-app.on('activate', () => {
-    if (window === null) {
-        createWindow();
-    }
-});
-
-app.on('window-all-closed', function () {
-    if (process.platform !== 'darwin') {
-        app.quit()
-    }
-});
