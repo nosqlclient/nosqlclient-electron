@@ -14,7 +14,7 @@ Scaffold for electron packaging of [Mongoclient](https://github.com/mongoclient/
 
 ### Steps to PACKAGE
 - Run: `npm install -g electron-packager`
-- Run: `electron-packager . Mongoclient --app-version=2.0.0 --build-version=2.0.0 --icon=D:\git\mongoclient_packaged\app\programs\web.browser\app\logo\head.ico --overwrite --out=D:\git\mongoclient_packaged\packaged --electronVersion=1.6.2`
+- Run: `electron-packager . Mongoclient --appVersion=2.0.0 --buildVersion=2.0.0 --icon=D:\git\mongoclient_packaged\app\programs\web.browser\app\logo\head.ico --overwrite --out=D:\git\mongoclient_packaged\packaged --electronVersion=1.6.2`
 
 ### License
 Licensed under AGPL v3.0
