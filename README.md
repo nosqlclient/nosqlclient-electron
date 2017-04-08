@@ -18,7 +18,3 @@ Scaffold for electron packaging of [Mongoclient](https://github.com/mongoclient/
 
 ### License
 Licensed under AGPL v3.0
-
-### Credits (Loading Splash Screen)
-- [please-wait](https://github.com/Pathgather/please-wait)
-- [Spinkit](https://github.com/tobiasahlin/SpinKit)

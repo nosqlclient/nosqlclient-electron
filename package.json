@@ -1,6 +1,8 @@
 {
   "name": "Mongoclient",
   "main": "index.js",
+  "license": "AGPLv3",
+  "repository": "https://github.com/mongoclient/mongoclient-electron",
   "version": "2.0.0",
   "dependencies": {
     "shelljs": "^0.7.7"
