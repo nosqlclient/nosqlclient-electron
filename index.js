@@ -7,6 +7,7 @@ const shell = require('shelljs');
 const http = require('http');
 
 const logTag = '[MONGOCLIENT]';
+let mongoProcess, nodeProcess;
 
 const template = [
     {
@@ -224,7 +225,7 @@ const beginStartingMongo = function (appRoot, loadingWin) {
 
     freeport(null, function (port) {
         console.log(logTag, 'trying to spawn mongod process with port: ' + port);
-        let mongoProcess = spawn(path, [
+        mongoProcess = spawn(path, [
             '--dbpath', dataDir,
             '--port', port,
             '--bind_ip', '127.0.0.1',
@@ -268,7 +269,7 @@ const startNode = function (appRoot, mongoPort, loadingWin) {
         console.log(logTag, 'detected environment variables: ' + JSON.stringify(process.env));
 
         console.log(logTag, 'trying to spawn node process with port: ' + port);
-        let nodeProcess = spawn(path, [mainPath]);
+        nodeProcess = spawn(path, [mainPath]);
         nodeProcess.stdout.on('data', function (data) {
             console.log(logTag, '[NODE-STDOUT]', data.toString());
         });
@@ -337,4 +338,8 @@ const loadWindow = function (appPort, loadingWin) {
 app.on('ready', createWindow);
 app.on('window-all-closed', function () {
     app.quit();
+});
+app.on('will-quit', function () {
+    nodeProcess.kill();
+    mongoProcess.kill();
 });
