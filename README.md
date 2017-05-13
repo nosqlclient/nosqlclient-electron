@@ -17,7 +17,7 @@ Scaffold for electron packaging of [Mongoclient](https://github.com/mongoclient/
 - Run: `electron-packager . Mongoclient --appVersion=2.0.0 --buildVersion=2.0.0 --icon=D:\git\mongoclient_packaged\app\programs\web.browser\app\logo\head.ico --overwrite --out=D:\git\mongoclient_packaged\packaged --electronVersion=1.6.2`
 
 ### Steps to PACKAGE - Optional for short and clean paths, especially on Windows build)
-- Run: `npm install modclean -g`
+- Run: `npm install -g modclean@1.2.7`
 - Run: cd `my/app/path/resources/app` 
 - Run: `modclean -n default:safe,default:caution`
 
