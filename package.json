@@ -1,9 +1,10 @@
 {
   "name": "Mongoclient",
+  "description": "MongoDB Management Tool",
   "main": "index.js",
-  "license": "AGPLv3",
+  "license": "AGPL-3.0",
   "repository": "https://github.com/mongoclient/mongoclient-electron",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "dependencies": {
     "shelljs": "^0.7.7"
   }
