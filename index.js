@@ -5,6 +5,7 @@ const join = path.join;
 const spawn = require('child_process').spawn;
 const shell = require('shelljs');
 const http = require('http');
+const NativeImage = require('electron').nativeImage;
 
 const logTag = '[MONGOCLIENT]';
 let mongoProcess, nodeProcess;
@@ -324,7 +325,8 @@ const loadWindow = function (appPort, loadingWin) {
             nodeIntegration: false
         },
         width: 1200,
-        height: 900
+        height: 900,
+        icon: NativeImage.createFromPath('img//mc_icon_50.png')
     });
 
     const menu = Menu.buildFromTemplate(template);
