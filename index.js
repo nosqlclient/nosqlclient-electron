@@ -7,7 +7,7 @@ const shell = require('shelljs');
 const http = require('http');
 const NativeImage = require('electron').nativeImage;
 
-const logTag = '[MONGOCLIENT]';
+const logTag = '[NOSQLCLIENT]';
 let mongoProcess, nodeProcess;
 
 const template = [
@@ -92,7 +92,7 @@ const template = [
             {
                 label: 'Learn More',
                 click () {
-                    require('electron').shell.openExternal('http://www.mongoclient.com')
+                    require('electron').shell.openExternal('https://www.nosqlclient.com')
                 }
             }
         ]
@@ -177,7 +177,7 @@ if (process.platform === 'darwin') {
 }
 
 const createWindow = function () {
-    console.log(logTag, 'trying to start Mongoclient electron application');
+    console.log(logTag, 'trying to start Nosqlclient electron application');
     const appRoot = path.resolve(__dirname);
     const loadingPage = join('file://', appRoot, 'loading.html');
 
