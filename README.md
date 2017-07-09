@@ -1,4 +1,6 @@
 ## Nosqlclient, Electron Packaging Scaffold
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/nosqlclient/nosqlclient-electron.svg)](https://greenkeeper.io/)
 Scaffold for electron packaging of [Nosqlclient](https://github.com/nosqlclient/nosqlclient), can be used with the [MeteorJS](https://github.com/meteor/meteor) applications
 
 ### Steps
