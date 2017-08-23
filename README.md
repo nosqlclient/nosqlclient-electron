@@ -14,7 +14,7 @@ Scaffold for electron packaging of [Nosqlclient](https://github.com/nosqlclient/
 
 ### Steps to PACKAGE
 - Run: `npm install -g electron-packager`
-- Run: `electron-packager . Nosqlclient --appVersion=2.0.0 --buildVersion=2.0.0 --icon=D:\git\mongoclient_packaged\app\programs\web.browser\app\logo\head.ico --overwrite --out=D:\git\mongoclient_packaged\packaged --electronVersion=1.6.2`
+- Run: `electron-packager . Nosqlclient --appVersion=2.0.0 --buildVersion=2.0.0 --icon=D:\git\mongoclient_packaged\app\programs\web.browser\app\logo\head.ico --overwrite --out=D:\git\mongoclient_packaged\packaged --electronVersion=1.7.5`
 
 ### Steps to AFTER-PACKAGE - Optional for short and clean paths, especially on Windows build)
 - Run: `npm install -g modclean@1.2.7`
